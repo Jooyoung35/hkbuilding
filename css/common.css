@@ -1,0 +1,728 @@
+@charset "UTF-8";
+
+*{
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box;
+  /* cursor: url('../images/corsor_260202.png') 5 5, pointer; */
+}
+ul{list-style: none;}
+a{color: black; text-decoration: none;}
+img{vertical-align: top; border: none;}
+
+/* color variables */
+:root{
+  --color-main-text :#222222;
+  --color-sub-text : #333333;
+
+  --color-primary : #10365C;
+  /* --color-primary : #2c5044; */
+  --color-secondary : #d2b48c;
+  --color-bg : #fbf9f6;
+  --color-white :#fdfdfd
+}
+
+
+/* Pretendard */
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/assets/font/Pretendard-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/assets/font/Pretendard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/assets/font/Pretendard-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/assets/font/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* RobotoCondensed (EN) */
+@font-face {
+  font-family: 'RobotoCondensed';
+  src: url('/assets/font/RobotoCondensed-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+html{
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: 'Pretendard',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    sans-serif;
+  color: var(--color-main-text);
+  overflow-x: hidden;
+}
+
+
+/* 영문 강조용 */
+.font-en {
+  font-family: 'RobotoCondensed', 'Pretendard', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* header css */
+#header {
+  width: 100%;
+  height: 150px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+  transition: all 0.4s ease
+}
+
+.hd-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 120px;
+}
+.hd-wrap .logo{
+  position: absolute;
+  top: 47%; left: 5%;
+}
+.hd-wrap .logo img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  transition: opacity 0.4s ease;
+}
+.logo-b {
+  opacity: 1;
+}
+.main-page .logo-b {
+  opacity: 0;
+}
+.main-page .logo-w {
+  opacity: 1;
+}
+
+/* 스크롤 시 상태: #header에 scrolled 클래스가 붙었을 때 / 메인페이지*/
+#header.scrolled .logo-w {
+  opacity: 0;
+}
+
+/* .main-page #header .logo-b, */
+#header.scrolled .logo-b {
+  opacity: 1;
+}
+
+/* .gnb에 호버가 되었을 때, .hd-wrap 안에 있는 .logo를 찾아서 변경 */
+.hd-wrap:has(.gnb:hover) .logo-b {
+  opacity: 1;
+}
+
+.gnb{
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  position: absolute;
+  top: 35%; left: 50%;
+  transform: translateX(-50%);
+  padding: 20px 20px 0;
+}
+/* -------------------------------------- */
+.gnb::after{
+  content: '';
+  position: absolute;
+  top: 65px; 
+  left: 0; width: 100%; height: 1px;
+  background-color: var(--color-primary); 
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s;
+}
+
+#header.scrolled .gnb::after{
+  background-color: var(--color-primary);
+}
+.gnb:hover::after{
+  opacity: 1;
+  visibility: visible;
+}
+.gnb > li{
+  text-align: center;
+}
+.gnb .nav-indicator{
+  position: absolute;
+  top: 65px;   
+  left: 0px;                   
+  transform: translateY(-50%);               
+  width: 8px; height: 8px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); 
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+}
+
+.gnb:hover .nav-indicator{
+  display: block;
+}
+.main-page .gnb:hover > li > a,
+.main-page #header.scrolled .gnb > li > a,
+.gnb > li > a{
+  color:  var(--color-primary);
+  font-size: 20px;
+  font-weight: 400;
+  transition: all 0.4s ease;
+}
+
+.main-page .gnb > li > a{
+  color:  var(--color-white);
+}
+
+.gnb .sub{
+  margin-top: 30px;
+  overflow: hidden;
+  height: 0px;
+}
+.gnb .sub li{
+  margin-top: 15px;
+}
+.gnb .sub li a{
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--color-sub-text);
+  position: relative;
+}
+
+.gnb .sub li a::after{
+  content: " ";
+  display: block;
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: var(--color-sub-text);
+  transition: all 0.3s;
+}
+#header.scrolled .gnb .sub li a::after{
+  background-color: var(--color-sub-text);
+}
+.gnb .sub li:hover a::after{
+  width: 100%;
+}
+.wrap-gnb{
+  background-color: #ffffff;
+  height: 0;
+  box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  position: absolute; 
+  top: 0; 
+  left: 0;
+  z-index: -1;
+}
+#header.scrolled .wrap-gnb{
+  background-color: rgba(255, 255, 255,0.95);
+  box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.1);
+  height: 150px;
+}
+
+#header.scrolled {
+  background-color:rgba(255, 255, 255,0.95);
+  box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.1);
+}
+/* GNB 열렸을 때 헤더 배경 제거 */
+#header.gnb-open.scrolled {
+  background: transparent;  
+}
+
+
+/* side-menu */
+.hd-wrap .side-menu{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 52%; right: 3%
+}
+.hd-wrap .side-menu li:first-child{
+  margin: 0 40px;
+}
+.hd-wrap .gnb:hover ~ .side-menu li a,
+#header.scrolled .hd-wrap .side-menu li a,
+.hd-wrap .side-menu li a{
+  /* color: var(--color-primary); */
+  color: var(--color-sub-text);
+  font-weight: 400;
+  border: 1px solid var(--color-sub-text);
+  position: relative;
+  padding: 5px 18px;
+  transition: all 0.4s ;
+  font-size: 15px;
+}
+.hd-wrap .side-menu li a.join{
+  margin-left: 10px;
+}
+
+
+.main-page .hd-wrap .side-menu li a{
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
+}
+.main-page .hd-wrap .side-menu li a:hover{
+  background-color: var(--color-white);
+  color: var(--color-primary);
+}
+
+.hd-wrap .gnb:hover ~ .side-menu li a:hover,
+#header.scrolled .hd-wrap .side-menu li a:hover,
+.hd-wrap .side-menu li a:hover{
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.mo-gnb-btn{
+  width: 34px;
+  height: 34px;
+}
+.mo-gnb-btn img{
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  position: absolute;
+  top: 0; left: 0;
+}
+.main-page .mo-gnb-btn .menu-ico{
+  opacity: 1;
+}
+.main-page #header.scrolled .mo-gnb-btn .menu-ico,
+.main-page .mo-gnb-btn .menu-ico-b{
+  opacity: 0;
+}
+.main-page #header.scrolled .mo-gnb-btn .menu-ico-b,
+.mo-gnb-btn .menu-ico-b{
+  opacity: 1;
+}
+
+
+
+
+/* 모바일 gnb 영역 */
+.mo-main-page-header,
+.mo-top-area,
+.wrap-mo-gnb {
+  display: none !important;
+}
+.mo-main-page-header {
+  position: fixed;
+  top: 0; width: 100%; height: 130px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mo-gnb-btn{
+  position: absolute;
+  top: 30px; right: 8%;
+  display: none; 
+}
+.mo-gnb-btn .close-ico{
+  display: none;
+}
+
+/* 공통 설정: 오른쪽 바깥에 대기 */
+.mo-top-area, .wrap-mo-gnb {
+  position: fixed; 
+  right: -100%;    
+  width: 100%;      
+  transition: right 0.4s ease-in-out; 
+  z-index: 1000;
+  display: block !important;
+}
+.mo-top-area{
+  width: 100%;
+  background-color: var(--color-primary);
+  display: none;
+  position: relative;
+  z-index: 2000;
+  top: 0;
+  height: 130px;
+}
+/* .mo-header.active {
+  pointer-events: none;
+} */
+.mo-top-area li.wrap-login{
+  position: absolute;
+  bottom: 20px;
+  right: 8%;
+}
+.mo-top-area li a{
+  color: #fdfdfd;
+  font-size: 16px;
+  font-weight: 300;
+  pointer-events: auto !important;
+}
+.mo-top-area li a.mo-join{
+  margin-left: 20px;
+}
+
+.mo-logo{
+  position: absolute;
+  top:35px; left: 8%;
+  display: none;
+}
+.mo-logo a img{
+  position: absolute;
+  top:0px; left: 0%;
+  transition: opacity 0.4s ease;
+}
+
+
+
+/* 기본색상 및 스크롤됐을 때 */
+.mo-logo .mo-logo-w,
+#header.scrolled .mo-logo .mo-logo-w{
+  opacity: 0;
+}
+#header.scrolled .mo-top-area .mo-logo .mo-logo-w,
+.mo-logo .mo-logo-b,
+#header.scrolled .mo-logo .mo-logo-b{
+  opacity: 1;
+}
+
+/* 메인기본색상 및 모바일메뉴 나왔을 때 */
+.mo-header.active .mo-logo .mo-logo-w,
+.main-page .mo-logo .mo-logo-w{
+  opacity: 1 ;
+}
+.mo-header.active .mo-logo .mo-logo-b,
+.main-page .mo-logo .mo-logo-b{
+  opacity: 0;
+}
+
+.wrap-mo-gnb{
+  top: 130px;
+  height: calc(100vh - 100px); /* 전체 높이에서 top-area만큼 제외 */
+  background-color: #fff;
+  /* display: none; */
+}
+
+.mo-gnb-container {
+  display: flex;
+  height: 100vh;
+  background: #F1F1F1;
+}
+
+/* 좌측 대메뉴 */
+.mo-main-menu {
+  width: 35%;
+  background: #DCDAD8;
+}
+
+.mo-main-menu a{
+  color: var(--color-main-text);
+}
+.mo-sub-content a{
+  color: var(--color-main-text);
+  margin-bottom: 20px;
+  display: block;
+  position: relative;
+  font-size: 15px;
+}
+.mo-sub-content a::after{
+  content: " ";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #d9d9da;
+  position: absolute;
+  bottom: -10px; left: 0;
+}
+.mo-main-menu li {
+  padding: 20px 15px;
+  font-size: 14px;
+}
+
+.mo-main-menu li.active {
+  background: #F1F1F1; /* 선택된 메뉴 강조 */
+  font-weight: bold;
+  color: #10365C;
+}
+
+/* 우측 서브메뉴: 넓고 흰 배경 */
+.mo-sub-content {
+  width: 65%;
+  padding: 20px;
+}
+
+.tab-content {
+  display: none; /* 평소엔 숨김 */
+}
+
+.tab-content.active {
+  display: block; /* 선택된 것만 보여줌 */
+}
+
+
+
+
+/* footer css */
+#footer{
+  width: 100%;
+  height: 300px;
+  background-image: url(../images/footer/footer_bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wrap-ft{
+  width: 85%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+
+.wrap-ft .logo-ft a img{
+  width: 80px;
+  opacity: 0.7;
+}
+
+.wrap-ft .contents{
+  margin-left: 100px;
+  height: 100%;
+  font-size: 14px;
+  padding: 60px 0 25px;
+}
+.wrap-ft .contents .ft-menu a{
+  color: #c4c4c4;
+  margin-right: 18px;
+  transition: all 0.5s;
+  font-weight: 400;
+}
+.wrap-ft .contents .ft-menu a:hover{
+  color: var(--color-white);
+}
+
+.wrap-ft .contents .info{
+  color: #c4c4c4;
+  font-weight: 300;
+  line-height: 1.6;
+  margin-top: 55px;
+}
+.wrap-ft .contents .info b{
+  font-weight: 700;
+}
+.wrap-ft .contents .info .copyright{
+  margin-top: 70px;
+  color: #848D89;
+}
+.wrap-ft .site-con{
+  width: 180px;
+  position: absolute;
+  top: 50px;
+  right: 0px;
+}
+.wrap-ft .site-con>a {
+  color: #c4c4c4;;
+  padding: 8px;
+  font-size: 14px;
+  display: block;
+  border-bottom: 1px solid #fdfdfd;
+}
+.wrap-ft .site-con>a::after{
+  content: "\25BC";
+  display: block;
+  font-size: 0.8em;
+  position: absolute;
+  top: 10px; right: 10px;
+}
+.wrap-ft .site-con ul{
+  background-color: #343735;
+  padding: 10px;
+  position: absolute;
+  top: 34px; left: 0;
+  width: 180px;
+  display: none;
+}
+.wrap-ft .site-con ul a{
+  color: #fdfdfd;
+  line-height: 1.6;
+  font-size: 15px;
+}
+.wrap-ft .site-con ul a:hover{
+  text-decoration: underline;
+}
+
+/* top-btn----------------------------- */
+.top-btn{
+  width: 70px;
+  height: 70px;
+  background-color: var(--color-secondary);
+  opacity: 0.8;
+  position: fixed;
+  bottom: 155px;
+  right: 50px;
+  border-radius: 20%;
+  text-align: center;
+  z-index: 9999;
+  cursor: pointer;
+  animation: top 1.8s infinite;
+  backdrop-filter: blur(10px);      /* 뒤에 있는 것만 흐리게 */
+  -webkit-backdrop-filter: blur(10px);  /* Safari 대응 */
+  display: none;
+}
+.top-btn span{
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: #fff;
+  position: absolute;
+  top: 45%; left: 25%;
+  transform: rotate(-45deg);
+}
+.top-btn span::after{
+  content: " ";
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: #fff;
+  position: absolute;
+  top: 10px; left: 10px;
+  transform: rotate(90deg);
+}
+
+
+
+/* 1279px 이하  */
+@media (max-width: 1279px) {
+
+  body.no-scroll {
+    overflow: hidden; 
+    height: 100vh;    
+  }
+  #header.scrolled {
+    background:transparent;
+    box-shadow: none;
+  }
+  .hd-wrap{
+    display: none;
+  }
+  .mo-logo{
+    display: block;
+  }
+  .mo-main-page-header {
+    display: flex !important;
+  }
+  .mo-top-area, .wrap-mo-gnb {
+    display: block !important; /* 모바일에서만 다시 나타남 */
+    position: fixed;
+  }
+  .mo-gnb-btn{
+    display: block;
+  }
+  .wrap-mo-gnb.active, .mo-top-area.active {
+    right: 0;
+    display: block;
+  }
+  .hd-wrap .side-menu li a{
+    display: none;
+  }
+  .wrap-gnb, .gnb > li > .sub {
+    height: auto !important; 
+    display: none; /* 모바일에서는 클릭 시에만 */
+  }
+
+  /* 기본 모바일 헤더 상태 */
+  .mo-main-page-header {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100px; 
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+  }
+  /* 스크롤 되었을 때  */
+  .mo-main-page-header.scrolled {
+    height: 80px; 
+    background-color: rgba(255, 255, 255, 0.95); 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+}
+
+/* 974px 이하 */
+@media (max-width: 974px) {
+
+  /* footer */
+  .wrap-ft{
+    width: 95%;
+  }
+  .wrap-ft .contents{
+    margin-left: 50px;
+  }
+  .wrap-ft .site-con{
+    right: 0px;
+    top: 45px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* footer */
+  #footer{
+    height: 450px;
+  }
+  .wrap-ft{
+    display: block;
+    padding-top: 50px;
+  }
+
+  .wrap-ft .contents{
+    margin-left: 0px;
+    padding-bottom: 0px;
+    height: auto;
+    box-sizing: border-box;
+  }
+
+
+  /* top-btn */
+  .top-btn{
+    width: 50px;
+    height: 50px;
+    right: 20px;
+  }
+  .top-btn span{
+    left: 15%;
+  }
+
+}
+
+
+@keyframes top{
+    0%{
+        bottom: 30px;
+    }
+    50%{
+        bottom: 40px;
+    }
+    100%{
+        bottom: 30px;
+    }
+}
