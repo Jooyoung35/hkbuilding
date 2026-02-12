@@ -10,7 +10,7 @@ body{
   position: fixed;
   top: 0; left: 0; 
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   background-color: var(--color-primary); 
   display: flex;
   flex-direction: column;
@@ -592,6 +592,12 @@ body{
     width: 100%;
     padding-left: 20px;
   }
+
+    /* 회원가입배너 ------------------*/
+  .join-banner{
+    background-attachment: scroll;
+    background-image: url(../images/index/join-bg.png);
+  }
 }
 
 
@@ -725,6 +731,10 @@ body{
     line-height: 1.4;
     padding-top: 20px;
   }
+  .rest-contents .swiper-rest .sd1 .slide-img-area::after,
+  .rest-contents .swiper-rest .sd2 .slide-img-area::after{
+    border-radius: 10px;
+  }
 
 
   /* 회원가입배너 ------------------*/
@@ -733,6 +743,7 @@ body{
     height: 400px;
     margin: 50px auto;
     border-radius: 10px;
+    background-image: url(../images/index/join-bg.png);
   }
   .join-banner .join-txt{
     padding: 150px 20px 0;
