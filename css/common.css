@@ -6,9 +6,14 @@
   box-sizing: border-box;
   /* cursor: url('../images/corsor_260202.png') 5 5, pointer; */
 }
+
 ul{list-style: none;}
 a{color: black; text-decoration: none;}
 img{vertical-align: top; border: none;}
+p, div, span, h1, h2, h3, h4, h5, h6 {
+  word-break: keep-all;      
+  overflow-wrap: break-word; 
+}
 
 /* color variables */
 :root{
@@ -28,28 +33,29 @@ img{vertical-align: top; border: none;}
   font-family: 'Pretendard';
   src: url('../assets/font/Pretendard-Light.woff2') format('woff2');
   font-weight: 300;
-  font-display: swap;
+  font-display: fallback;
 }
 
 @font-face {
   font-family: 'Pretendard';
   src: url('../assets/font/Pretendard-Regular.woff2') format('woff2');
   font-weight: 400;
-  font-display: swap;
+  font-display: fallback;
+  /* font-display: swap; */
 }
 
 @font-face {
   font-family: 'Pretendard';
   src: url('../assets/font/Pretendard-Medium.woff2') format('woff2');
   font-weight: 500;
-  font-display: swap;
+  font-display: fallback;
 }
 
 @font-face {
   font-family: 'Pretendard';
   src: url('../assets/font/Pretendard-Bold.woff2') format('woff2');
   font-weight: 700;
-  font-display: swap;
+  font-display: fallback;
 }
 
 /* RobotoCondensed (EN) */
@@ -57,7 +63,41 @@ img{vertical-align: top; border: none;}
   font-family: 'RobotoCondensed';
   src: url('../assets/font/RobotoCondensed-Variable.woff2') format('woff2');
   font-weight: 100 900;
-  font-display: swap;
+  font-display: fallback;
+}
+
+/* playfair */
+/* playfair-display-regular - latin */
+@font-face {
+  font-display: fallback; 
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/font/playfair-display-v40-latin/playfair-display-v40-latin-regular.woff2') format('woff2');
+}
+/* playfair-display-500 - latin */
+@font-face {
+  font-display: fallback; 
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../assets/font/playfair-display-v40-latin/playfair-display-v40-latin-500.woff2') format('woff2'); 
+}
+/* playfair-display-600 - latin */
+@font-face {
+  font-display: fallback; 
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../assets/font/playfair-display-v40-latin/playfair-display-v40-latin-600.woff2') format('woff2');
+}
+/* playfair-display-700 - latin */
+@font-face {
+  font-display: fallback; 
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/font/playfair-display-v40-latin/playfair-display-v40-latin-700.woff2') format('woff2'); 
 }
 html{
   scrollbar-gutter: stable;
@@ -77,11 +117,12 @@ body {
 
 /* 영문 강조용 */
 .font-en {
-  font-family: 'RobotoCondensed', 'Pretendard', sans-serif;
+  /* font-family: 'RobotoCondensed', 'Pretendard', sans-serif; */
+  font-family: 'Playfair Display', 'Pretendard', sans-serif;
   letter-spacing: 0.02em;
 }
 
-/* header css */
+/* header css ---------------------------------------------*/
 #header {
   width: 100%;
   /* height: 150px; */
@@ -137,14 +178,15 @@ body {
 
 .gnb{
   display: flex;
-  width: 50%;
-  justify-content: space-between;
+  width: 60%;
+  margin: 0 auto;
+  justify-content: center;
+  gap: 60px;
   position: absolute;
   top: 35%; left: 50%;
   transform: translateX(-50%);
-  padding: 20px 20px 0;
+  padding-top: 10px;
 }
-/* -------------------------------------- */
 .gnb::after{
   content: '';
   position: absolute;
@@ -165,7 +207,9 @@ body {
 }
 .gnb > li{
   text-align: center;
+  flex: none;
 }
+
 .gnb .nav-indicator{
   position: absolute;
   top: 65px;   
@@ -174,7 +218,7 @@ body {
   width: 8px; height: 8px;
   background-color: var(--color-primary);
   border-radius: 50%;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); 
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
   opacity: 0;
   pointer-events: none;
   display: none;
@@ -186,18 +230,24 @@ body {
 .main-page .gnb:hover > li > a,
 .main-page #header.scrolled .gnb > li > a,
 .gnb > li > a{
-  color:  var(--color-primary);
-  font-size: 20px;
-  font-weight: 400;
+  text-decoration: none;
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  color:  var(--color-main-text);
+  font-size: 18px;
+  font-weight: 500;
   transition: all 0.4s ease;
 }
-
+.gnb > li > a:hover{
+  color: var(--color-primary);
+}
 .main-page .gnb > li > a{
   color:  var(--color-white);
 }
 
 .gnb .sub{
-  margin-top: 30px;
+  margin-top: 50px;
   overflow: hidden;
   height: 0px;
 }
@@ -205,7 +255,7 @@ body {
   margin-top: 15px;
 }
 .gnb .sub li a{
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
   color: var(--color-sub-text);
   position: relative;
@@ -258,44 +308,86 @@ body {
   display: flex;
   align-items: center;
   position: absolute;
-  top: 52%; right: 3%
+  top: 46%; right: 3%;
 }
 .hd-wrap .side-menu li:first-child{
-  margin: 0 40px;
+  margin-left: 40px ;
 }
-.hd-wrap .gnb:hover ~ .side-menu li a,
-#header.scrolled .hd-wrap .side-menu li a,
-.hd-wrap .side-menu li a{
-  /* color: var(--color-primary); */
-  color: var(--color-sub-text);
+
+/*공통 버튼 베이스 (a, button 공통) */
+.hd-wrap .side-menu li a,
+.hd-wrap .side-menu li button {
   font-weight: 400;
-  border: 1px solid var(--color-sub-text);
-  position: relative;
-  padding: 5px 18px;
-  transition: all 0.4s ;
   font-size: 15px;
-}
-.hd-wrap .side-menu li a.join{
-  margin-left: 10px;
+  padding: 5px 18px;
+  border: 1px solid var(--color-sub-text);
+  color: var(--color-sub-text);
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1;
 }
 
-
-.main-page .hd-wrap .side-menu li a{
+ /* 수정 제안: li 자체를 flex 박스로 */
+.status-logged-out, .status-logged-in {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* margin-left 대신 gap 사용 */
+}
+/*메인 페이지 - 투명 헤더일 때  */
+.main-page #header:not(.scrolled) .hd-wrap .side-menu li a,
+.main-page #header:not(.scrolled) .hd-wrap .side-menu li button {
   color: var(--color-white);
-  border: 1px solid var(--color-white);
-}
-.main-page .hd-wrap .side-menu li a:hover{
-  background-color: var(--color-white);
-  color: var(--color-primary);
+  border-color: var(--color-white);
 }
 
-.hd-wrap .gnb:hover ~ .side-menu li a:hover,
+/* 스크롤 됐을 때 OR 일반 서브 페이지 (컬러 테두리) */
+#header .hd-wrap .gnb:hover ~ .side-menu li a,
+#header .hd-wrap .gnb:hover ~ .side-menu li button,
+#header.scrolled .hd-wrap .side-menu li a,
+#header.scrolled .hd-wrap .side-menu li button {
+  color: var(--color-sub-text);
+  border-color: var(--color-sub-text);
+}
+
+/* Hover 상태 (공통) 그냥호버/스크롤호버 */
 #header.scrolled .hd-wrap .side-menu li a:hover,
-.hd-wrap .side-menu li a:hover{
+#header.scrolled .hd-wrap .side-menu li button:hover,
+.hd-wrap .side-menu li a:hover,
+.hd-wrap .side-menu li button:hover {
   background-color: var(--color-primary);
   color: var(--color-white);
+  border-color: var(--color-primary);
 }
 
+/* 메인페이지 스크롤 전 hover */
+.main-page #header:not(.scrolled) .hd-wrap .side-menu li a:hover,
+.main-page #header:not(.scrolled) .hd-wrap .side-menu li button:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  border-color: var(--color-white);
+}
+
+/* 기본 상태: 로그인 후 메뉴 숨김 */
+
+.status-logged-in {
+  display: none;
+}
+
+/* 로그인 상태 클래스가 붙었을 때 */
+body.is-logged-in .status-logged-in {
+  display: flex;
+  gap: 10px;
+}
+
+body.is-logged-in .status-logged-out {
+  display: none;
+}
+
+
+/* --------------------------------------------------- */
 .mo-gnb-btn{
   width: 34px;
   height: 34px;
@@ -317,12 +409,9 @@ body {
 .main-page #header.scrolled .mo-gnb-btn .menu-ico-b,
 .mo-gnb-btn .menu-ico-b{
   opacity: 1;
-}
+} 
 
-
-
-
-/* 모바일 gnb 영역 */
+/* 모바일 gnb 영역 --------------------------------------*/
 .mo-main-page-header,
 .mo-top-area,
 .wrap-mo-gnb {
@@ -367,10 +456,31 @@ body {
 /* .mo-header.active {
   pointer-events: none;
 } */
-.mo-top-area li.wrap-login{
+.mo-top-area li.wrap-login,
+.mo-top-area li.wrap-logout{
   position: absolute;
   bottom: 20px;
   right: 8%;
+}
+.mo-status-logged-in{
+  display: none;
+}
+body.is-logged-in .mo-status-logged-in{
+  display: flex;
+}
+body.is-logged-in .mo-status-logged-out{
+  display: none;
+}
+.mo-top-area li .mo-logout{
+  border: none;
+  background: none;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  color: var(--color-white);
+  font-size: 15.5px;
+  font-weight: 300;
+  cursor: pointer;
 }
 .mo-top-area li a{
   color: #fdfdfd;
@@ -378,8 +488,9 @@ body {
   font-weight: 300;
   pointer-events: auto !important;
 }
+.mo-top-area li .mo-logout,
 .mo-top-area li a.mo-join{
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .mo-logo{
@@ -388,6 +499,7 @@ body {
   display: none;
 }
 .mo-logo a img{
+  width: 100px;
   position: absolute;
   top:0px; left: 0%;
   transition: opacity 0.4s ease;
@@ -478,11 +590,88 @@ body {
 .tab-content.active {
   display: block; /* 선택된 것만 보여줌 */
 }
+/* ------------------------------------------------------ */
 
 
+/* 서브페이지 타이틀  공통----------------------- */
+.sub-page-header{
+  width: 85%;
+  margin: 0 auto;
+  padding: 150px 0;
+}
+.wrap-bd-header {
+  display: flex;
+  flex-direction: column;   
+  list-style: none;
+  gap: 80px;
+  margin: 0;
+  border-bottom: 1px solid #c4c4c4; 
+}
+.title-area {
+  text-align: left;
+}
+.title-area h2{
+  color: var(--color-primary);
+  font-size: clamp(1.8rem, 2.2vw, 3rem);
+  line-height: 1.3;
+}
+.title-area p{
+  color: var(--color-sub-text);
+  font-size: clamp(1rem, 1.6vw, 1.125rem);
+  font-weight: 300;
+  margin-top: 12px;
+}
+.tab-menu-container {
+  align-self: flex-end;
+  position: relative;
+  display: inline-block; 
+}
+.tab-wrapper {
+  display: flex; 
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.tab-wrapper li {
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  padding: 15px 25px;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.3s;
+}
+.tab-wrapper li.active {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+/* 인디케이터 스타일 */
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: #000;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+/* --------------------------------------------- */
+
+/* 서브페이지 작은타이틀/ 설명텍스트 공통 */
+/* h3, p  텍스트 공통 */
+.common-title{
+  color: var(--color-secondary);
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.5;
+}
+.common-desc{
+  color: var(--color-sub-text);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  margin-top: 8px;
+}
 
 
-/* footer css */
+/* footer css --------------------------------------------*/
 #footer{
   width: 100%;
   height: 300px;
@@ -667,6 +856,11 @@ body {
     background-color: rgba(255, 255, 255, 0.95); 
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
+
+  /* 서브페이지 타이틀  공통----------------------- */
+  .sub-page-header{
+    padding: 80px 0;
+  }
 }
 
 /* 974px 이하 */
@@ -686,6 +880,13 @@ body {
 }
 
 @media (max-width: 767px) {
+  /* 서브페이지 타이틀 공통 */
+  .sub-page-header{
+    padding: 50px 0;
+  }
+  .tab-wrapper li {
+    padding: 15px 20px;
+  }
   /* footer */
   #footer{
     height: 450px;

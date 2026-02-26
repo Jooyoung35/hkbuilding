@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한국빌딩 통합 플랫폼 - THE LINK</title>
+  
+  <!-- css -->
+  <link rel="preload" href="./assets/font/Pretendard-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/font/Pretendard-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/contact_us.css">
+
+  <!-- js -->
+  <script src="./assets/js/jquery-3.7.1.min.js"></script>
+  <script src="./js/common.js" defer></script>
+</head>
+<body>
+  <!-- header -->
+  <div data-include="header.html"></div>
+
+  <main>
+    <section class="contact-header sub-page-header">
+      <ul class="wrap-bd-header">
+        <li class="title-area">
+          <h2 class="font-en">Contact us</h2>
+          <p>아래 연락처로 연락주시면 빠르게 답변 받으실 수 있습니다.</p>
+        </li>
+      </ul>
+    </section>
+
+    <div class="container">
+      <section class="info-section">
+        <div class="category">빌딩안내</div>
+        <div class="content-grid">
+          <div class="info-item">
+            <h4 class="item-title">청계 한국빌딩</h4>
+            <p class="item-contact">☎ 02.1234.5678</p>
+            <p class="item-contact">✉ cghkbuilding@kci.co.kr</p>
+          </div>
+          <div class="info-item">
+            <h4 class="item-title">을지 한국빌딩</h4>
+            <p class="item-contact">☎ 02.1234.5678</p>
+            <p class="item-contact">✉ cghkbuilding@kci.co.kr</p>
+          </div>
+          <div class="info-item">
+            <h4 class="item-title">소공 한국빌딩</h4>
+            <p class="item-contact">☎ 02.1234.5678</p>
+            <p class="item-contact">✉ cghkbuilding@kci.co.kr</p>
+          </div>
+          <div class="info-item">
+            <h4 class="item-title">종로 한국빌딩</h4>
+            <p class="item-contact">☎ 02.1234.5678</p>
+            <p class="item-contact">✉ cghkbuilding@kci.co.kr</p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <section class="info-section">
+        <div class="category">기타안내</div>
+        <div class="content-grid">
+          <div class="info-item">
+            <h4 class="item-title">숙박·행사·연회·멤버십 안내</h4>
+            <p class="item-contact">☎ 02.6377.5162</p>
+            <p class="item-contact">☎ 02.6377.5254</p>
+            <p class="item-contact">✉ reservation@kci.co.kr</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+
+
+    <!-- footer -->
+  <div data-include="footer.html"></div>
+    
+    <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      includeHTML(initCommonDesign);
+    });
+  </script>
+</body>
+</html>

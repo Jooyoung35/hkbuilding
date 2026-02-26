@@ -11,7 +11,7 @@ window.addEventListener('load', () => {
     setTimeout(() => {
       intro.style.display = 'none';
     }, 1000); 
-  }, 2000);
+  }, 1500);
 });
 
 
