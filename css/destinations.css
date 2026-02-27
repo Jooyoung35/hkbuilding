@@ -261,12 +261,21 @@ main{
 
 /* 767px 이하 */
 @media (max-width: 767px) {
+
+  
   .destination-main-img{
     width: 85%;
     margin: 30px auto 0;
     border-radius: 10px;
     overflow: hidden;
   }
+  .swiper-button-next {
+    display: none !important;
+  }
+
+.swiper-button-prev {
+  display: none !important;
+}
 
   .wrap-destination-info{
     margin: 50px auto;
@@ -275,6 +284,25 @@ main{
     height: 400px;
     border-radius: 10px;
   }
+
+  
+  /* 상화헌---------------------------------- */
+  .cafe-sanghwaheon{
+    width: 85%;
+    margin: 100px auto;
+  }
+  .cafe-text > img{
+    width: 200px;
+    margin: 0 0 -50px 0px;
+  }
+  .cafe-img-area{
+    width: 100%;
+    margin: 40px 0;
+  }
+  .cafe-img-area > img{
+    width: 100%;
+  }
+
 
   
   .wrap-memeber-benefit{
@@ -297,5 +325,7 @@ main{
     padding: 20px;
     border-radius: 0 0 10px 10px;
   }
+
+  
 }
     
